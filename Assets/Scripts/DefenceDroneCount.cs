@@ -4,10 +4,10 @@ using TMPro;
 
 public class DefenceDroneCount : MonoBehaviour
 {
-    // Обработчик нажатий в элементе смены количества оборонительных дронов 
+    // Listening to defence drone count element
     public void DropdownHandler(int index){
         
-        // Логика выбора количества оборонительных дронов
+        // Defence drone count logic
         switch (index)
         {
             case 0: infoHandler.AllyDroneCount = 3; 

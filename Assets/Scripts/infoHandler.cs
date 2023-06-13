@@ -5,10 +5,10 @@ using UnityEngine;
 public class infoHandler : MonoBehaviour
 {
     /// <summary>
-    /// Глобальные данные настроек среды
-    /// EnemyDroneCount - Количество атакующих дронов
-    /// AllyDroneCount - Количество оборонительных дронов
-    /// WeatherMode - Режим погоды
+    /// Global environment parameters
+    /// EnemyDroneCount - Attack drone count
+    /// AllyDroneCount - Defence drone count
+    /// WeatherMode - weather mode
     /// </summary>
 
     public static float EnemyDroneCount = 3;

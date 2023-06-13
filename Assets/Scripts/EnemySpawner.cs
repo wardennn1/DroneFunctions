@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {   
-    // Образец дрона для спауна
+    // Parent drone to copy
     public GameObject enemyDrone;
     
-    // Набор векторов для расположения недостающих атакующих дронов
+    // Positions to spawn drones
     Vector3[] whereToSpawn = new Vector3[6] {   
                                                 new Vector3(-20f, 0f, 5f), 
                                                 new Vector3(-25f, 0f, 5f), 
@@ -17,18 +17,18 @@ public class EnemySpawner : MonoBehaviour
                                                 new Vector3(-30f, 0f, 13f) 
                                             };
     
-    // Минимальное количество атакующих дронов
+    // Minimal drone count
     private float minDroneCount = 3;
     
-    // Количество атакующих дронов
+    // Actual attack drone count
     private float totalEnemyDroneCount = infoHandler.EnemyDroneCount; 
 
-    public GameObject parentDrone; //Родительский дрон
+    public GameObject parentDrone; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
     // Start is called before the first frame update
     void Start()
     {   
-        // Логика расположения недостающих дронов
+        // Spawn logic
         switch (totalEnemyDroneCount)
         {
             case 3:
@@ -51,20 +51,20 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    // Созданиие недостающих дронов
+    // Spawn mechanic
     public void spawn (float droneCount)
     {   
         
             for (int i = 0; i <  totalEnemyDroneCount - minDroneCount; i++)
                 
                 {   
-                    // Расположение недостающего атакующего дрона
+                    // Adding new drone
                     GameObject AllyDrone = Instantiate(enemyDrone, whereToSpawn[i+1], Quaternion.identity);
                 }
 
     }
 
-    // Удаление излишних атакующих дронов
+    // Destroying drone
     private void destroyDrone(float totalDrone, float droneCur)
     {
         

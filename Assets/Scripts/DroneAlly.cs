@@ -4,33 +4,33 @@ using UnityEngine;
 
 public class DroneAlly : MonoBehaviour
 {
-    // Скорость полета дрона
+    // Drone move speed
     public float Speed = 10f;
     
-    // Длина луча атаки
+    // Drone's ray shoot range
     public float raycastLength = 10f;
     
-    //Сила подъема дрона вверх
+    // Force to up drone
     float upForce;
     
     private Rigidbody _rb;
     
-    // Урон дрона
+    // Drone damage
     public float damage = 10f;
  
     public float range = 10f;
     
-    // Стандартные значения максимального и текущего здоровья
+    // Default HP
     [SerializeField] float health, maxHealth = 100f;
 
-    // Поле для элемента полоски здоровья
+    // Reference to healthbar element
     [SerializeField] FloatingHealthBar healthBar;
     
-    // Переменная с данными об объекте попадания
+    // hit info variable
     RaycastHit hit;
 
 
-    // Определение стандартных компонент при старте сцены
+    // Default parameters initializing
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -42,10 +42,10 @@ public class DroneAlly : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {   
-        // Придача дрону силы для взлёта
+        // Force to up drone
         _rb.AddRelativeForce(Vector3.up * upForce);
                 
-        // Перемещение дрона
+        // Logic of drone movement
         MovementLogic ();
 
     }
@@ -53,23 +53,23 @@ public class DroneAlly : MonoBehaviour
 
     void Update() 
     {   
-        // Проверка нажатия кнопки стрельбы
+        // Listening to fire button
         if (Input.GetButtonDown("Fire1"))
         {   
-            // Стрельба
+            // Shooting
             Shoot();
         }
     }
 
-    // Логика полета дрона
+    // Drone movement logic
     private void MovementLogic ()
     {   
 
-        // Считывание клавиш управления в плоскостях x z
+        // Drone moving in axys X and Z
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        // Обработка нажатия клавиш для взлета и снижения
+        // Listening to up/down commands
         if(Input.GetKey(KeyCode.LeftShift))
             {
                 upForce = 8f;
@@ -83,45 +83,45 @@ public class DroneAlly : MonoBehaviour
                 upForce = 0f;
             }
         
-        // Задание нового вектора перемещения для дрона после обработки клавищ
+        // Resulting drone movement
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         _rb.AddRelativeForce(movement * Speed);
 
     }
 
 
-    // Получение урона
+    // Damage taking mechanic
     public void TakeDamage (float damageAmount)
     {   
-        // Изменение показателей здоровья дрона
+        // Changing hp 
         health -= damageAmount;
         healthBar.UpdateHealthBar(health,maxHealth);
 
-        // Проверка условия получения летального урона
+        // Checking letal damage
         if (health <= 0)
         {   
             Die();
         }
     }
 
-    // Уничтожение дрона
+    // Death mechanic
     public void Die()
     {
 
     }
 
 
-    // Стрельба
+    // Shoot mechanic
     public void Shoot ()
     {   
         
-        // Обработка попадания лучом по объекту
+        // Checking hit target
         RaycastHit shootHit;
         if (Physics.Raycast(_rb.transform.position, _rb.transform.forward, out shootHit, range ))
         {
             DroneEnemy droneEnemy = shootHit.transform.GetComponent<DroneEnemy>();
 
-            // Проверка попадания по вражескому дрону
+            // Dealing damage to enemy drone
             if (droneEnemy != null)
             {   
                 droneEnemy.TakeDamage(damage);
@@ -130,7 +130,7 @@ public class DroneAlly : MonoBehaviour
 
             Base baseTarget = shootHit.transform.GetComponent<Base>();
 
-            // Проверка попадания по базе противника
+            // Dealing damage to enemy base
             if (baseTarget != null)
             {   
                 

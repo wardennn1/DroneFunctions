@@ -5,19 +5,19 @@ using UnityEngine.UI;
 
 public class FloatingHealthBar : MonoBehaviour
 {
-    // Поля для работы с объектом наложения элемента полоски здоровья
+    // Parameters to change with healthbar
     [SerializeField] private Slider slider;
     [SerializeField] private Camera camera;
     [SerializeField] private Transform target;
     [SerializeField] private Vector3 offset;
 
-    // Изменение состояния полоски здоровья
+    // Displaying change of HP amount
     public void UpdateHealthBar (float currentValue, float maxValue)
     {   
         slider.value = currentValue / maxValue;
     }
 
-    // Перемещение полоски здоровья в зависимости от расположения камеры
+    // Moving healthbar with camera's changing position
     void Update()
     {
         transform.rotation = camera.transform.rotation;

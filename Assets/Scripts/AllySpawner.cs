@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class AllySpawner : MonoBehaviour
 {   
-    // ќбразец оборонительного дрона дл€ спауна
+    // Defence drone reference
     public GameObject allyDrone;
     
-    // —ледующа€ точка спауна
+    // Next spawn point
     float nextSpawn;
 
-    // Ќабор векторов дл€ расположени€ оборонительных дронов
+    // Set of vectors to spawn drones
     Vector3[] whereToSpawn = new Vector3[6] {   
                                                 new Vector3(-30f, 0f, -45f), 
                                                 new Vector3(-25f, 0f, -45f), 
@@ -19,19 +19,19 @@ public class AllySpawner : MonoBehaviour
                                                 new Vector3(-25f, 0f, -45f), 
                                                 new Vector3(-20f, 0f, -45f) 
                                             };
-    // ћинимальное количество оборонительных дронов
+    // Minimal drone count
     private float minDroneCount  = 3;
 
-    //јктуальное количество оборонительных дронов
+    // Actual drone count
     private float totalAllyDroneCount = infoHandler.AllyDroneCount;
 
-    // –одительский оборонительый дрон дл€ ориентации при динамическом спауне
+    // Parent drone to spawn copies
     public GameObject parentDrone;
     
     // Start is called before the first frame update
     void Start()
     {
-        // Ћогика расположени€ недостающих оборонительных дронов
+        // Drone spawn logic
         switch (totalAllyDroneCount)
         {
             case 3:
@@ -49,21 +49,21 @@ public class AllySpawner : MonoBehaviour
         }
     }
 
-    // —оздание недостающих оборонительных дронов
+    // Drone spawn mechanic
     public void spawn (float droneCount)
     {   
    
             for (int i = 0; i < totalAllyDroneCount - minDroneCount; i++)
                 
                 {   
-                    // –асположение недостающего оборонительного дрона
+                    // Spawning a drone
                     GameObject AllyDrone = Instantiate(allyDrone, whereToSpawn[i+1], Quaternion.identity);
                     
                 }
 
     }
 
-    // ”даление излишних оборонительных дронов
+    // Destroying overcounted drones
     private void destroyDrone(float totalDrone, float droneCur)
     {
         

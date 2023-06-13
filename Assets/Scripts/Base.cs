@@ -5,26 +5,26 @@ using UnityEngine;
 public class Base : MonoBehaviour
 {   
 
-    // Стандартные значения здоровья и максимального здоровья
+    // Default HP 
     [SerializeField] public float health, maxHealth = 500;
 
-    //Назначение полоски здоровья
+    // Reference to healthbar element
     [SerializeField] FloatingHealthBar healthBar;
     
-    // Получение урона объектом
+    // Damage taking mechanic
         public void TakeDamage (float damageAmount)
         {
             health -= damageAmount;
             healthBar.UpdateHealthBar(health,maxHealth);
         
-            // Проверка количества здоровья на момент летальности нанесенного урона
+            // Letal damage checking
             if (health <= 0)
             {   
                 Die();
             }
         }
 
-        // Уничтожение игрового объекта - базы 
+        // Death mechanic
             public void Die()
         {
             Destroy(gameObject);

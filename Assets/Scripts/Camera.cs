@@ -5,7 +5,7 @@ using UnityEngine;
 public class Camera : MonoBehaviour
 {   
 
-    // Скорость перемещения камеры
+    // Camera move speed
     public float camSpeed = 20;
 
     // Update is called once per frame
@@ -13,43 +13,43 @@ public class Camera : MonoBehaviour
     {
         Vector3 pos = transform.position;
 
-        // Движение камеры вперед
+        // Camera move forward
         if (Input.GetKey(KeyCode.W))
             {
                 pos.z += camSpeed * Time.deltaTime;
             }
         
-        // Движение камеры назад
+        // Camera move backward
         if (Input.GetKey(KeyCode.S))
             {
                 pos.z -= camSpeed * Time.deltaTime;
             }
 
-        // Движение камеры вправо
+        // Camera move right
         if (Input.GetKey(KeyCode.D))
             {
                 pos.x += camSpeed * Time.deltaTime;
             }
 
-        // Движение камеры влево
+        // Camera move left
         if (Input.GetKey(KeyCode.A))
             {
                 pos.x -= camSpeed * Time.deltaTime;
             }
         
-        // Подъем камеры 
+        // Camera move up
         if (Input.GetKey(KeyCode.RightShift))
         {
             pos.y += camSpeed * Time.deltaTime;
         }
 
-        // Снижение камеры
+        // Camera move down
         if (Input.GetKey(KeyCode.RightControl))
         {
             pos.y -= camSpeed * Time.deltaTime; 
         }
 
-        // Смещение камеры
+        // Resulting camera move
         transform.position = pos;
 
     }

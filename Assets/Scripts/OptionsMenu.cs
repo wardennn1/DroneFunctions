@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class OptionsMenu : MonoBehaviour
 {
-    // Меню опций
+    // Reference to options menu object
     public GameObject optionsObject;
     public bool EscapeMenuOpen;
 
@@ -14,7 +14,7 @@ public class OptionsMenu : MonoBehaviour
     void Update()
     {   
 
-        // Обработка нажатия клавиши Escape для вызова меню опций
+        // Listening to escape button to activate options menu
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (EscapeMenuOpen == false)
@@ -31,17 +31,17 @@ public class OptionsMenu : MonoBehaviour
         }   
     }
 
-    // Обработка нажатия кнопки продолжения моделирования
+    // Contnue modeling
     public void continueMod()
     {   
         EscapeMenuOpen = false;
         optionsObject.SetActive(false);
     }
 
-    //Обработка нажатия кнопки возврата в главное меню
+    // Back to main menu
     public void backToMenu()
     {   
-        // Устоановка глобальных параметров на изначальные значения
+        // Setting default environment parameters
         infoHandler.AllyDroneCount = 3;
         infoHandler.EnemyDroneCount = 3;
         infoHandler.WeatherMode = 0;

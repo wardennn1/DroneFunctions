@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class DroneEnemy : MonoBehaviour
 {   
-    // Скорость перемещения дрона
+    // Drone move speed
     public float Speed = 0f;
 
-    // Длина луча стрельбы
+    // Drone's shooting range
     public float raycastLength = 10f;
     
-    // Сила подъема дрона в воздух
+    // Force to up drone
     float upForce;
     private Rigidbody _rb;
     
-    // Стандартные значения максимального и текущего здоровья
+    // Default HP
     [SerializeField] public float health, maxHealth = 100f;
 
-    // Поле для элемента полоски здоровья
+    // Reference to healthbar-element
     [SerializeField] FloatingHealthBar healthBar;
     
     RaycastHit hit;
 
 
-    // Определение элементов и характеристик дрона
+    // Initializing default parameters
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -32,28 +32,28 @@ public class DroneEnemy : MonoBehaviour
         healthBar = GetComponentInChildren<FloatingHealthBar>();
     }
 
-    // Покадровая обработка состояния дрона
+    // Checking move commands
     void FixedUpdate()
     {   
-        // Применение силы для подъема дрона в воздух
+        // Adding force to up drone
         _rb.AddRelativeForce(Vector3.up * upForce);
                 
         Ray ray = new Ray (transform.position, -transform.up);
 
-        // Перемещение дрона
+        // Checking movement commands
         MovementLogic ();
         
 
     }
 
-    // Логика перемещения дрона (не для демонстрации)
+    // Drone movement logics
     private void MovementLogic ()
     {   
-        /// Считывание клавиш управления дроном в осях x z
+        /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ x z
         // float moveHorizontal = Input.GetAxis("Horizontal");
         // float moveVertical = Input.GetAxis("Vertical");
 
-        /// Обработка нажатия клавиш для подъема или снижения дрона
+        /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         // if(Input.GetKey(KeyCode.LeftShift))
         //     {
         //         upForce = 8f;
@@ -68,27 +68,27 @@ public class DroneEnemy : MonoBehaviour
         //     }
         // Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
-        ///Применение силы для подъема или снижения дрона
+        ///пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         // _rb.AddRelativeForce(movement * Speed);
 
     }
 
-    // Получение урона дроном
+    // Taking damage mechanics
     public void TakeDamage (float damageAmount)
     {   
 
-        // Изменение значения здоровья дрона
+        // Changin HP amount
         health -= damageAmount;
         healthBar.UpdateHealthBar(health,maxHealth);
 
-        // Проверка на условие летальности полученного урона
+        // Checking letal damage
         if (health <= 0)
         {   
             Die();
         }
     }
 
-    // Самоуничтожение дрона
+    // Death mechanic
     public void Die()
     {
         Destroy(gameObject);

@@ -5,16 +5,16 @@ using UnityEngine;
 public class weatherControl : MonoBehaviour
 {
     /// <summary>
-    /// Переменная - режим погоды 
-    /// 0 - стандартная погода
-    /// 1 - туман
-    /// 2 - ветер (в разработке)
+    /// Parameters to switch weather mode
+    /// 0 - Default weather
+    /// 1 - Fog
+    /// 2 - пїЅпїЅпїЅпїЅпїЅ (пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
     /// </summary>
     private float wMode = infoHandler.WeatherMode;
     // Start is called before the first frame update
     void Start()
     {
-        // Проверка режима погоды
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         switch (wMode)
         {
             case 0:

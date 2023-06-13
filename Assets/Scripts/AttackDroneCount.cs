@@ -4,13 +4,13 @@ using TMPro;
 
 public class AttackDroneCount : MonoBehaviour
 {   
-    // Спаунер атакующих дронов
+    // Reference to attack drone spawner
     public EnemySpawner enemySpawner;
 
-    // Обработка элемента выбора количества атакующих дронов
+    // Listening attack drone count element
     public void DropdownHandler(int index){
         
-        // Логика установки количества атакующих дронов
+        // Attack drone count logic
         switch (index)
         {   
             case 0: 
